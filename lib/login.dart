@@ -36,8 +36,19 @@ class _MyloginpageState extends State<MyloginPage> {
   final _PasswordController=TextEditingController();
 
   Future Signin() async{
-
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: _UsernameController.text.trim(),
+        password:_PasswordController.text.trim(),
+    );
   }
+
+  @override
+  void dispose(){
+    _UsernameController.dispose();
+    _PasswordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
